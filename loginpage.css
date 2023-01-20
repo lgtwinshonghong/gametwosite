@@ -9,7 +9,7 @@
     align-items: center;
     flex-direction: column;
     border: 1px solid lightgrey;
-    border-radius: 5px;
+    border-radius: 5px; 
 
     /*수직 정렬*/
     -webkit-box-align: center; 

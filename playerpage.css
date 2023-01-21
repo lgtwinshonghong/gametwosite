@@ -41,20 +41,31 @@ nav li{
 
 nav li a{color:white;}
 
-left_alticle1{
-    position: absolute;
-    left: 1px;
-    top: 96px;
+
+left_alticle2{
+    position:absolute;
+    left:1px;
+    top:120px;
     border: 2px solid rgb(16, 13, 24);
     border-radius: 5px;
     width: 112px;
 }
 
-left_alticle2{
+main_alticle1{
+   position:absolute;
+   top:220px;
+   left:300px;
+   width: 160px;
+   border: 2px solid rgb(16, 13, 24);
+   border-radius: 5px;
+}
+
+main_alticle2{
     position:absolute;
-    left:1px;
-    top:333px;
-    border: 2px solid rgb(16, 13, 24);
+    left: 500px;
+    top:220px;
+    border: 2px solid rgb(230, 13, 13);
     border-radius: 5px;
-    width: 112px;
+    width: 250px;
+    
 }

@@ -2,8 +2,8 @@
 <html>
     <head>
         <meta charset = "UTF-8">    
-        <title>PublicBaseballDatabase</title>
-        <link rel="stylesheet" href="main.css">
+        <title>PublicBaseballDataBase</title>
+        <link rel="stylesheet" href="playerpage.css">
     </head>
     <body> 
         <header>
@@ -12,9 +12,9 @@
                    <img src = "C:\Users\User\OneDrive\바탕 화면\나는 전력분석가\gametwo\mylogo.png" alt="logo", height = "95px">
                   </div>
                   <div id = "top_menu">
-                    <a herf = "#" onclick = "location.href ='mainpage.html'">HOME</a>
-                    <a herf = "#" onclick = "location.href = 'login.html'">LOGIN</a>
-                    <a herf = "#">SGIN UP</a>
+                    <a herf = "#" onclick = "location.href ='mainpage.html'">HOME |</a>
+                    <a herf = "#" onclick = "location.href = 'login.html'">로그인 | </a>
+                    <a herf = "#"  onclick = "location.href = 'signup.html'">회원가입</a>
                   </div>
             </div>
    
@@ -26,6 +26,45 @@
                </ul>
              </nav>
            </header>
-           <h1>This is gametwo Player page</h1>
-    </body>
+           
+           <!--선수 이름으로 선수 찾게하는 검색 기능-->
+           <left_alticle1>
+              <div>
+                <input type = "text" placeholder="name">
+                <button onclick>찾기</button>
+              </div>
+           </left_alticle1>
+           
+           <left_alticle2>
+                <ul>
+                  <li><a herf = "#">투수 기록 보기</a></li>
+                  <li><a herf = "#">타자 기록 보기</a></li>
+                  <li><a herf = "#">감독 기록 보기</a></li>
+                </ul>
+           </left_alticle2>
+           
+           <!--선수의 기본 정보가 들어가는 공간 좌측 사진 우측에 투타정보 등등을 알 수 있음-->
+           <main_alticle1>
+               <div> <!--선수 프로필 사진이 들어가는 div-->
+                 
+               </div>        
+           </main_alticle1>
+           <main_alticle2>
+               <div> <!--선수 기본 정보가 들어가는 div-->
+                   <ul>
+                    <li><a>성별 : </a></li>
+                    <li><a>나이 : </a></li>
+                    <li><a>출신 학교 : </a></li>
+                    <li><a>선출 여부 : </a></li>
+                    <li><a>투타 정보 : </a></li>
+                   </ul>
+               </div>
+           </main_alticle2>
+
+           <!--이 홈페이지의 핵심 여러 기록 관련한 정보를 스탯티즈 처럼 볼 수 있는 정보임-->
+          <main_alticle3>
+
+          </main_alticle3>
+        
+        </body>
 </html>

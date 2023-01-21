@@ -1,9 +1,6 @@
 .main{
-    width:250px;
-    height: 300px;
-    display: -webkit-box; 
-    display: -moz-box;
-    display: -ms-flexbox; 
+    width:350px;
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,22 +8,18 @@
     border: 1px solid lightgrey;
     border-radius: 5px;
 
-    /*수직 정렬*/
-    -webkit-box-align: center; 
-    -moz-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    
-    /*수평 정렬*/
-    -webkit-box-pack: center;
-    -moz-box-pack: center; 
-    -ms-flex-pack: center; 
-    justify-content: center;
+
+    top:500px;
+    left:300px;
 }
 
 .logo{
     margin-top: 0px;
     margin-bottom: 40px;
+}
+
+.container{
+    padding: 3rem;
 }
 
 #login{
@@ -46,4 +39,10 @@
 
 #alert{
     border-color: transparent;
+}
+
+header{
+    position: absolute;
+    left: 250px;
+    top: 150px;
 }

@@ -7,12 +7,12 @@
     </head>
     <body> 
         <header>
-            <div id = "" >
+            <div id = "">
                   <div id = "logo">
                    <img src = "C:\Users\User\OneDrive\바탕 화면\나는 전력분석가\gametwo\mylogo.png" alt="logo", height = "95px">
                   </div>
                   <div id = "top_menu">
-                    <a herf = "#" onclick = "location.href ='mainpage.html'">HOME |</a>
+                    <a herf = "#" onclick = "location.href ='mainpage.html'">HOME | </a>
                     <a herf = "#" onclick = "location.href = 'login.html'">로그인 | </a>
                     <a herf = "#"  onclick = "location.href = 'signup.html'">회원가입</a>
                   </div>
@@ -25,7 +25,7 @@
                    <li><a herf = "#" onclick = "location.href = 'Leaguepage.html'">League Page</a></li>
                </ul>
              </nav>
-           </header>
+        </header>
            
            <!--선수 이름으로 선수 찾게하는 검색 기능-->
            <left_alticle1>
@@ -46,24 +46,85 @@
            <!--선수의 기본 정보가 들어가는 공간 좌측 사진 우측에 투타정보 등등을 알 수 있음-->
            <main_alticle1>
                <div> <!--선수 프로필 사진이 들어가는 div-->
-                 
+                 <img src = "C:\Users\User\OneDrive\바탕 화면\01-일반반명(3x4) (1).jpg" alt="profile" width="90" height="105">
                </div>        
            </main_alticle1>
            <main_alticle2>
                <div> <!--선수 기본 정보가 들어가는 div-->
                    <ul>
-                    <li><a>성별 : </a></li>
-                    <li><a>나이 : </a></li>
-                    <li><a>출신 학교 : </a></li>
-                    <li><a>선출 여부 : </a></li>
-                    <li><a>투타 정보 : </a></li>
+                    <li><a>성별 : 남</a></li>
+                    <li><a>나이 : 23</a></li>
+                    <li><a>출신 학교 : 가천대학교</a></li>
+                    <li><a>선출 여부 : 비선출</a></li>
+                    <li><a>투타 정보 : 우투좌타</a></li>
                    </ul>
                </div>
            </main_alticle2>
 
            <!--이 홈페이지의 핵심 여러 기록 관련한 정보를 스탯티즈 처럼 볼 수 있는 정보임-->
           <main_alticle3>
-
+              <table>
+                <caption>시즌 기록</caption>
+                
+                  <tr text-align="center" backgournd-color="gray">
+                    <td></td>
+                    <td>연도</td>
+                    <td>경기</td>
+                    <td>타석</td>
+                    <td>타수</td>
+                    <td>안타</td>
+                    <td>2루타</td>
+                    <td>3루타</td>
+                    <td>홈런</td>
+                    <td>볼넷</td>
+                    <td>사구</td>
+                    <td>타점</td>
+                    <td>득점</td>
+                    <td>도루</td>
+                    <td>도실</td>
+                    <td>희플</td>
+                  </tr>
+                  <tr><!--추후 자바스크립트와 연동해 서버에 저장된 값을 불러올 생각임-->
+                    <td></td>
+                    <td>2023</td>
+                    <td>32</td>
+                    <td>100</td>
+                    <td>90</td>
+                    <td>30</td>
+                    <td>6</td>
+                    <td>1</td>
+                    <td>4</td>
+                    <td>8</td>
+                    <td>2</td>
+                    <td>37</td>
+                    <td>30</td>
+                    <td>25</td>
+                    <td>5</td>
+                    <td>0</td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>타율</td>
+                    <td>출루율</td>
+                    <td>장타율</td>
+                    <td>OPS</td>
+                    <td>wOBA</td>
+                    <td>WRC+</td>
+                    <td>war*</td>
+                    <td>득타율</td>
+                  </tr>
+                  <tr><!--추후 자바스크립트와 연동해 서버에 저장된 값을 불러올 생각임-->
+                    <td></td>
+                    <td>0.333</td>
+                    <td>0.400</td>
+                    <td>0.511</td>
+                    <td>0.911</td>
+                    <td>0.458</td>
+                    <td>156.4</td>
+                    <td>9.2</td>
+                    <td>0.462</td>
+                  </tr>
+              </table>
           </main_alticle3>
         
         </body>

@@ -1,17 +1,25 @@
 .main{
-    width:250px;
-    height: 300px;
+    width:350px;
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     border: 1px solid lightgrey;
     border-radius: 5px;
+
+
+    top:500px;
+    left:300px;
 }
 
 .logo{
     margin-top: 0px;
     margin-bottom: 40px;
+}
+
+.container{
+    padding: 3rem;
 }
 
 #login{
@@ -31,4 +39,10 @@
 
 #alert{
     border-color: transparent;
+}
+
+header{
+    position: absolute;
+    left: 250px;
+    top: 150px;
 }

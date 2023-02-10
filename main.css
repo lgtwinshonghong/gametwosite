@@ -13,6 +13,7 @@ header{
     position:absolute;
     top: 0px;
     left: 0px;
+    width: 112px;
 }
 
 #top_menu{
@@ -39,3 +40,29 @@ nav li{
 }
 
 nav li a{color:white;}
+
+left_alticle1{
+    position: absolute;
+    left: 1px;
+    top: 96px;
+    border: 2px solid rgb(16, 13, 24);
+    border-radius: 5px;
+    width: 112px;
+}
+
+left_alticle2{
+    position:absolute;
+    left:1px;
+    top:333px;
+    border: 2px solid rgb(16, 13, 24);
+    border-radius: 5px;
+    width: 112px;
+}
+
+main_alticle1{
+    position: absolute;
+    left: 150px;
+    top:130px;
+    border: 1px solid rgb(228, 225, 235);
+    border-radius: 5px;
+}

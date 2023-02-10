@@ -1,0 +1,100 @@
+*{margin:0px;padding:0px;}
+a{text-decoration: none;}
+ul{text-decoration: none;}
+
+header{
+    width: 100%;
+    height: 95px;
+    background-color: rgb(123, 119, 172);
+    position: relative;
+}
+
+#logo{
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    width: 112px;
+}
+
+#top_menu{
+    position:absolute;
+    top:20px;
+    right:10px;
+    color:white;
+ 
+}
+/*top menu a의 글씨 하얀색으로 표기*/
+#top_menu a{color:white;}
+
+nav{
+    position: absolute;
+    bottom:10px;
+    left:220px;
+    font-size: 26px;
+    text-align: center;
+}
+
+nav li{
+    display:inline;
+    margin-left: 30px;
+}
+
+nav li a{color:white;}
+
+
+left_alticle2{
+    position:absolute;
+    left:300px;
+    top:180px;
+    border: 2px solid rgb(16, 13, 24);
+    border-radius: 5px;
+    height: 25px;
+    width: 380px;
+    list-style-type: none;
+}
+
+left_alticle2 ul li{
+    text-align: center;
+    line-height: 20px;
+    margin-left: 12px;
+    float:left;  
+    list-style: none;
+}
+
+left_alticle2 ul li a{
+    font-size: 14px;
+    margin-left: 10px;
+    list-style: none;
+}
+main_alticle1{
+   position:absolute;
+   top:220px;
+   left:300px;
+   width: 90px;
+   height: 105px;
+   border: 2px solid rgb(16, 13, 24);
+   border-radius: 5px;
+}
+
+main_alticle2{
+    position:absolute;
+    left: 430px;
+    top:220px;
+    border: 2px solid rgb(230, 13, 13);
+    border-radius: 5px;
+    width: 250px;
+    
+}
+
+main_alticle3{
+    position:absolute;
+    top:335px;
+    left: 220px;
+    width: 760px;
+    height: 70px;
+}
+
+table{
+    border: 1px solid black;
+    text-align:center;
+}

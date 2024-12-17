@@ -1,91 +1,240 @@
-<!DOCTYPE html> 
-<html>
-    <head>
-        <meta charset = "UTF-8">    
-        <title>PublicBaseballDatabase</title>
-        <!--style-->
-        <link rel="stylesheet" href="main.css">
-    </head>
-    <body> 
-        
-        <!--I'm in charge of the banner at the top of the main page.-->
-        <header>
-         <div id = "" >
-               <div id = "logo">
-                <img src = "C:\Users\User\OneDrive\바탕 화면\나는 전력분석가\gametwo\mylogo.png" alt="logo", height = "95px">
-               </div>
-               <div id = "top_menu">
-                  <a herf = "#" onclick = "location.href ='mainpage.html'">HOME |</a>
-                  <a herf = "#" onclick = "location.href = 'login.html'" target="_blank">로그인 |</a>
-                  <a herf = "#" onclick = "location.href = 'signup.html'">회원가입</a>
-               </div>
-         </div>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Baseball Database</title>
+    <!-- 스타일 -->
+    <link rel="stylesheet" href="common_page.css">
+    <style>
+        /* 추가 CSS */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+        }
 
-          <nav>
+        header, footer {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        #logo img {
+            margin-left: 20px;
+            height: 85px;
+        }
+
+        nav {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        nav a:visited, nav a:active, nav a:focus {
+            color: #fff; /* 방문, 클릭, 포커스 상태도 흰색 유지 */
+        }
+
+        nav a:hover {
+            color: #ddd; /* 마우스 호버 시 약간의 회색으로 강조 */
+        }
+
+        #top_menu {
+            margin-right: 20px;
+        }
+
+        #top_menu a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        #top_menu a:visited, #top_menu a:active, #top_menu a:focus {
+            color: #fff; /* 방문, 클릭 상태 흰색 유지 */
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 20px;
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        .content-wrapper {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        aside {
+            width: 20%;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        section {
+            flex: 2;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            text-align: center;
+            padding: 15px;
+        }
+
+        section img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+
+        .ranking {
+            width: 20%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            padding: 15px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .ranking h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .bottom-section {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .bottom-box {
+            flex: 1;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            padding: 15px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        footer {
+            margin-top: auto;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 상단 배너 -->
+    <header>
+        <div id="logo">
+            <img src="mylogo.PNG" alt="logo">
+        </div>
+        <nav>
             <ul>
-                <li><a herf = "#" onclick = "location.href = 'Playerpage.html'">Player Page</a></li>
-                <li><a herf = "#" onclick = "location.href = 'Teampage.html'">Team Page</a></li>
-                <li><a herf = "#" onclick = "location.href = 'Leaguepage.html'">League Page</a></li>
+                <li><a href="Playerpage.html">Player Page</a></li>
+                <li><a href="Teampage.html">Team Page</a></li>
+                <li><a href="Leaguepage.html">League Page</a></li>
             </ul>
-          </nav>
+        </nav>
+        <div id="top_menu">
+            <a href="#">HOME |</a>
+            <a href="login.html">로그인 |</a>
+            <a href="signup.html">회원가입</a>
+        </div>
+    </header>
 
-        </header>
+    <main>
+        <!-- 상단 콘텐츠 -->
+        <div class="content-wrapper">
+            <!-- Left Section -->
+            <aside>
+                <h2>모집 및 홍보</h2>
+                <ul>
+                    <li><a href="#">캐치볼 모집</a></li>
+                    <li><a href="#">훈련장 모집</a></li>
+                    <li><a href="#">선수 모집</a></li>
+                    <li><a href="#">리그 모집</a></li>
+                    <li><a href="#">훈련장 홍보</a></li>
+                    <li><a href="#">선수 코칭 홍보</a></li>
+                    <li><a href="#">리그 홍보</a></li>
+                </ul>
+            </aside>
 
-        <!--This is a find team or catch the ball panel-->
-        <left_alticle1>
-            <div>
-              <h2>모집</h2>
-              <ul>
-                <li><a herf = "#"></a>캐치볼 모집</li>
-                <li><a herf = "#"></a>훈련장 모집</li>
-                <li><a herf = "#"></a>선수 모집</li>
-                <li><a herf = "#"></a>리그 모집</li>
-                <li></li>
-              </ul>
-              <h2>홍보</h2>
-              <ul>
-                <li>훈련장 홍보</li>
-                <li>선수 코칭 홍보</li>
-                <li>리그 홍보</li>
-              </ul>
+            <!-- Center Section -->
+            <section>
+                <h3>세이버 스탯 소개</h3>
+                <p>팀과 선수별 세이버 스탯 분석을 통해 전략적인 야구를 즐기세요!</p>
+                <img src="placeholder.png" alt="세이버 스탯 이미지">
+            </section>
+
+            <!-- Right Section -->
+            <div class="ranking">
+                <h3>팀 랭킹</h3>
+                <ol>
+                    <li>FireBats</li>
+                    <li>Dragons</li>
+                    <li>Blue Sharks</li>
+                    <li>Red Eagles</li>
+                    <li>Thunder Wolves</li>
+                </ol>
             </div>
-        </left_alticle1>
+        </div>
 
-        <left_alticle2>
-            <div>
-                <h2>KBO</h2>
-                <ul>
-                    <li><a herf = "#" onclick = "location.href ='http://www.statiz.co.kr/main.php'" title = "Statiz">KBO기록보기</a></li>
-                </ul>
-                <h2>NPB</h2>
-                <ul>
-                    <li><a herf = "#" onclick = "location.href ='https://baseball-data.com/'" title = "Npb Stat">NPB기록보기</a></li>
-                </ul>
-                <h2>MLB</h2>
-                <ul>
-                    <li><a herf = "#" onclick = "location.href ='https://mlb.com/home'" title = "MLB office">MLB공식사이트</a></li>
-                    <li><a herf = "#" onclick = "location.href = 'https://fangraphs.com'" title = "MLB fangraphs">MLB팬그래프</a></li>
-                </ul>
+        <!-- Bottom Section -->
+        <div class="bottom-section">
+            <div class="bottom-box">
+                <h3>자유게시판</h3>
+                <p>야구에 대한 자유로운 이야기를 나누어보세요!</p>
             </div>
-        </left_alticle2>
-        
-        <main_alticle1>
-            <div>
-                <h3> 이번주 인기글 TOP5 </h3>
-                <ul>
-                    <li>엠창기 시발 사람이냐</li>
-                    <li>류딱딱 걍 유임이 좋은거 아님?</li>
-                    <li>시발 좆럿코 재계약 뭐냐</li>
-                    <li>염레기 시이발</li>
-                    <li>모든 원흉은 좆해좆이다 ㅇㅈ?</li>
-                </ul>
+            <div class="bottom-box">
+                <h3>용품 중고 거래</h3>
+                <p>야구 용품을 사고 팔 수 있는 공간입니다.</p>
             </div>
-        </main_alticle1>
+            <div class="bottom-box">
+                <h3>KBO 팬들 게시판</h3>
+                <p>KBO 리그를 사랑하는 팬들을 위한 공간입니다.</p>
+            </div>
+        </div>
+    </main>
 
-        <right_alticle1>
-             <div>
-               
-             </div>
-        </right_alticle1>
-    </body>
+    <!-- 하단 푸터 -->
+    <footer>
+        <p>&copy; 2024 Public Baseball Database. All rights reserved.</p>
+    </footer>
+    <script type="module" src="navbar.js"></script>
+
+</body>
 </html>

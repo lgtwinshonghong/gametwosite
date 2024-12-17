@@ -1,0 +1,105 @@
+/* 공통 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header - 상단 배너 */
+header {
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    position: fixed; /* 상단 고정 */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+#logo img {
+    margin-left: 20px;
+    height: 85px; /* 로고 사이즈 유지 */
+}
+
+nav {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+nav a:visited, nav a:active, nav a:focus {
+    color: #fff; /* 눌러도 흰색 유지 */
+}
+
+nav a:hover {
+    color: #ddd; /* 마우스 호버 시 강조 */
+}
+
+#top_menu {
+    margin-right: 20px;
+}
+
+#top_menu a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#top_menu a:visited, #top_menu a:active, #top_menu a:focus {
+    color: #fff; /* 눌러도 흰색 유지 */
+}
+
+/* Footer - 하단 배너 */
+footer {
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    position: fixed; /* 하단 고정 */
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Main 여백 설정 (header와 footer에 가리지 않도록) */
+main {
+    margin-top: 120px; /* 헤더 높이 고려 */
+    margin-bottom: 60px; /* 푸터 높이 고려 */
+    flex: 1;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}

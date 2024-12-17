@@ -1,81 +1,184 @@
 <!DOCTYPE html>
-<html lag = "ko">
+<html lang="ko">
 <head>
-    <title>BBDB</title>
-    <link href = "signup.css" rel = "stylesheet"/>
-    <script src = "signup.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입 - Public Baseball Database</title>
+  <link rel="stylesheet" href="common_page.css">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      height: 100vh; /* 전체 화면 높이 */
+      overflow: hidden; /* 전체 화면에서 스크롤바 감춤 */
+    }
+
+    header, footer {
+      position: fixed; /* 항상 고정 */
+      left: 0;
+      width: 100%;
+      background-color: #333;
+      color: #fff;
+      padding: 10px 0;
+      z-index: 1000; /* 다른 콘텐츠 위에 표시 */
+    }
+
+    header {
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    header #logo img {
+      margin-left: 20px;
+      height: 40px;
+    }
+
+    nav {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    nav ul {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    nav a:hover {
+      color: #ddd;
+    }
+
+    #top_menu {
+      margin-right: 20px;
+    }
+
+    #top_menu a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    #top_menu a:hover {
+      color: #ddd;
+    }
+
+    footer {
+      bottom: 0;
+      text-align: center;
+    }
+
+    main {
+      flex: 1; /* 남은 공간 차지 */
+      margin: 80px 0; /* header와 footer의 높이만큼 여백 */
+      overflow-y: auto; /* 스크롤 가능하게 설정 */
+      padding: 20px 0;
+    }
+
+    .signup-container {
+      width: 400px;
+      margin: 0 auto; /* 가운데 정렬 */
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .signup-container h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .signup-container input, .signup-container button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #1e90ff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0066cc;
+    }
+  </style>
 </head>
-
 <body>
-    <div class="wrapper">
-        <div class="title"><h1 style="font-size: 21px;">BBDB회원가입</h1></div>
-        <div class="email">
-            <input id="email" type="text" placeholder="이메일을 입력해 주세요.">
-            <div id="emailError" class="error"></div>
-        </div>
-        <div class="name">
-            <input id="name"  type="text" placeholder="이름을 입력해 주세요.">
-            <div id="nameError" class="error"></div>
-        </div>
-        <div class="password">
-            <input id="password" type="password" placeholder="비밀번호를 입력해 주세요.">
-            <div id="passwordError" class="error"></div>
-        </div>
-        <div class="passwordCheck">
-            <input id="passwordCheck" type="password" placeholder="비밀번호를 다시 입력해 주세요.">
-            <div id="passwordCheckError" class="error"></div>
-        </div>
-        <div class="phone">
-            <input id="phone1" type="text" size="1" maxlength="3" oninput="changePhone1()"> -
-            <input id="phone2" type="text" size="3" maxlength="4" oninput="changePhone2()"> -
-            <input id="phone3" type="text" size="3" maxlength="4" oninput="changePhone3()">
+  <!-- 상단 배너 -->
+  <header>
+    <div id="logo">
+      <img src="mylogo.PNG" alt="logo">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="Playerpage.html">Player Page</a></li>
+        <li><a href="Teampage.html">Team Page</a></li>
+        <li><a href="Leaguepage.html">League Page</a></li>
+      </ul>
+    </nav>
+    <div id="top_menu">
+      <a href="mainpage.html">HOME |</a>
+      <a href="login.html">로그인 |</a>
+      <a href="#">회원가입</a>
+    </div>
+  </header>
 
-        </div>
-        <div class="auth">
-            <div id="certificationNumber">000000</div>
-            <button disabled id="sendMessage" onclick="getToken()">인증번호 전송</button>
-        </div>
+  <!-- 메인 콘텐츠 -->
+  <main>
+    <div class="signup-container">
+      <h2>회원가입</h2>
+      <input type="text" id="name" placeholder="이름" required>
+      <input type="email" id="email" placeholder="이메일 (아이디)" required>
+      <button type="button" onclick="checkEmail()">아이디 중복 확인</button>
+      <p id="email-check-result" style="color: red;"></p>
 
-        <div class="timer">
-            <div id="timeLimit">03:00</div>
-            <button disabled id="completion" onclick="checkCompletion()">인증확인</button>
-        </div>
-        <div class="area">
-            <select id="area">
-                <option selected disabled>지역을 선택하세요.</option>
-                <option>서울</option>
-                <option>인천</option>
-                <option>부산</option>
-                <option>울산</option>
-                <option>대구</option>
-                <option>광주</option>
-                <option>대전</option>
-                <option>세종</option>
-                <option>성남</option>
-                <option>경기</option>
-                <option>충남</option>
-                <option>충북</option>
-                <option>강원</option>
-                <option>경남</option>
-                <option>경북</option>
-                <option>전남</option>
-                <option>전북</option>
-                <option>제주</option>
-            </select>
-            <div id="areaError" class="error"></div>
-        </div>
-        <div class="gender">
-            <input id="gender_man" type="radio" name="gender">남성  
-            <input id="gender_woman" type="radio" name="gender">여성
-            <div id="genderError" class="error"></div>
-        </div>
-        <div class="line">
-            <hr>
-        </div>
-        <div class="signUp">
-            <button id="signUpButton" disabled onclick="signUpCheck()">가입하기</button>
-        </div>
+      <input type="password" id="password" placeholder="비밀번호" required>
+      <input type="password" id="confirm-password" placeholder="비밀번호 확인" required>
+      <p id="password-check-result" style="color: red;"></p>
+
+      <input type="text" id="city" placeholder="사는 곳 (시)" required>
+      <input type="date" id="birthdate" placeholder="생년월일" required>
+
+      <input type="tel" id="phone" placeholder="전화번호 (+821012345678)" required>
+      <div id="recaptcha-container"></div>
+      <button type="button" onclick="sendVerificationCode()">인증 코드 전송</button>
+      <input type="text" id="code" placeholder="인증 코드 입력">
+      <button type="button" onclick="verifyCode()">인증 코드 확인</button>
+      <p id="phone-check-result" style="color: green;"></p>
+
+      <button type="button" onclick="registerUser()">회원가입</button>
+    </div>
+  </main>
+
+  <!-- 하단 푸터 -->
+  <footer>
+    <p>&copy; 2024 Public Baseball Database. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript 파일 연결 -->
+  <script type="module" src="signup.js"></script>
+
+  <script type="module" src="navbar.js"></script>
 
 </body>
-
 </html>

@@ -1,21 +1,180 @@
 <!DOCTYPE html>
+<html lang="ko">
 <head>
-    <meta charset = "UTF-8">    
-        <title>PublicBaseballDatabase</title>
-        <!--style-->
-        <link rel="stylesheet" href="loginpage.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 - Public Baseball Database</title>
+    <link rel="stylesheet" href="common_page.css">
+    <style>
+        /* 추가 CSS */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        header, footer {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        #logo img {
+            margin-left: 20px;
+            height: 80px;
+        }
+
+        nav {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        nav a:visited, nav a:active, nav a:focus {
+            color: #fff; /* 방문, 클릭, 포커스 상태도 흰색 유지 */
+        }
+
+        nav a:hover {
+            color: #ddd; /* 마우스 호버 시 강조 */
+        }
+
+        #top_menu {
+            margin-right: 20px;
+        }
+
+        #top_menu a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        #top_menu a:visited, #top_menu a:active, #top_menu a:focus {
+            color: #fff; /* 방문, 클릭 상태 흰색 유지 */
+        }
+
+        .login-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .login-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1e90ff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .login-container button:hover {
+            background-color: #0066cc;
+        }
+
+        .login-container p {
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .login-container a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: auto;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+    </style>
 </head>
 <body>
+    <!-- 상단 배너 -->
     <header>
-      <div class = "main">
-        <h1 class = "logo">BBDB</h1>
-        <div class = "container">
-            <input type = "text" placeholder = "ID" id = "id" class = "account">
-            <input type = "password" placeholder="Password" id = "password" class = "account">
-            <button id = "login" class="account">LOGIN</button>
-            <p id = "alert" class = "account"></p>
+        <div id="logo">
+            <img src="mylogo.PNG" alt="logo">
         </div>
-       </div>
-       <script src = "loginpage.js"></script>
-   </header>
+        <nav>
+            <ul>
+                <li><a href="Playerpage.html">Player Page</a></li>
+                <li><a href="Teampage.html">Team Page</a></li>
+                <li><a href="Leaguepage.html">League Page</a></li>
+            </ul>
+        </nav>
+        <div id="top_menu">
+            <a href="mainpage.html">HOME |</a>
+            <a href="#">로그인 |</a>
+            <a href="signup.html">회원가입</a>
+        </div>
+    </header>
+
+    <!-- 로그인 폼 -->
+    <div class="login-container">
+        <h2>로그인</h2>
+        <form action="#" method="post">
+            <input type="text" name="username" placeholder="아이디를 입력하세요" required>
+            <input type="password" name="password" placeholder="비밀번호를 입력하세요" required>
+            <button type="submit">로그인</button>
+        </form>
+        <p>아직 계정이 없으신가요? <a href="signup.html">회원가입</a></p>
+    </div>
+
+    <!-- 하단 푸터 -->
+    <footer>
+        <p>&copy; 2024 Public Baseball Database. All rights reserved.</p>
+    </footer>
+    <script type="module" src="loginpage.js"></script>
+
+    <script type="module" src="navbar.js"></script>
+
 </body>
+</html>

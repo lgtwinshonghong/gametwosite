@@ -1,160 +1,113 @@
-// 휴대폰 번호 입력 부분
-function changePhone1(){
-    const phone1 = document.getElementById("phone1").value // 010
-    if(phone1.length === 3){
-        document.getElementById("phone2").focus();
-    }
-}
-function changePhone2(){
-    const phone2 = document.getElementById("phone2").value // 010
-    if(phone2.length === 4){
-        document.getElementById("phone3").focus();
-    }
-}
-function changePhone3(){
-    const phone3 = document.getElementById("phone3").value // 010
-    if(phone3.length === 4){
-      document.getElementById("sendMessage").focus();
-      document.getElementById("sendMessage").setAttribute("style","background-color:yellow;")
-      document.getElementById("sendMessage").disabled = false;
-    }
-}
+// Firebase SDK 불러오기
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  fetchSignInMethodsForEmail,
+  RecaptchaVerifier,
+  signInWithPhoneNumber
+} from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 
-// 문자인증+타이머 부분
-function initButton(){
-  document.getElementById("sendMessage").disabled = true;
-  document.getElementById("completion").disabled = true;
-  document.getElementById("certificationNumber").innerHTML = "000000";
-  document.getElementById("timeLimit").innerHTML = "03:00";
-  document.getElementById("sendMessage").setAttribute("style","background-color:none;")
-  document.getElementById("completion").setAttribute("style","background-color:none;")
-}
-
-let processID = -1;
-
-const getToken = () => {
-
-  // 인증확인 버튼 활성화
-  document.getElementById("completion").setAttribute("style","background-color:yellow;")
-  document.getElementById("completion").disabled = false;
-
-  if (processID != -1) clearInterval(processID);
-  const token = String(Math.floor(Math.random() * 1000000)).padStart(6, "0");
-  document.getElementById("certificationNumber").innerText = token;
-  let time = 180;
-  processID = setInterval(function () {
-    if (time < 0 || document.getElementById("sendMessage").disabled) {
-      clearInterval(processID);
-      initButton();
-      return;
-    }
-    let mm = String(Math.floor(time / 60)).padStart(2, "0");
-    let ss = String(time % 60).padStart(2, "0");
-    let result = mm + ":" + ss;
-    document.getElementById("timeLimit").innerText = result;
-    time--;
-  }, 50);
+// Firebase 설정 정보
+const firebaseConfig = {
+  apiKey: "AIzaSyCHPrzsiHxveJJzKRqdQDNv3CvdDhc3yDc",
+  authDomain: "social-baseball-data.firebaseapp.com",
+  projectId: "social-baseball-data",
+  storageBucket: "social-baseball-data.firebasestorage.app",
+  messagingSenderId: "670574481404",
+  appId: "1:670574481404:web:9c70fca95f8b5a45adec79",
 };
 
-function checkCompletion(){
-  alert("문자 인증이 완료되었습니다.")
-  initButton();
-  document.getElementById("completion").innerHTML="인증완료"
-  document.getElementById("signUpButton").disabled = false;
-  document.getElementById("signUpButton").setAttribute("style","background-color:yellow;")
-}
+// Firebase 초기화
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-
-// 가입부분 체크
-
-function signUpCheck(){
-
-  let email = document.getElementById("email").value
-  let name = document.getElementById("name").value
-  let password = document.getElementById("password").value
-  let passwordCheck = document.getElementById("passwordCheck").value
-  let area = document.getElementById("area").value
-  let gender_man = document.getElementById("gender_man").checked
-  let gender_woman = document.getElementById("gender_woman").checked
-  let check = true;
-
-  // 이메일확인
-  if(email.includes('@')){
-    let emailId = email.split('@')[0]
-    let emailServer = email.split('@')[1]
-    if(emailId === "" || emailServer === ""){
-      document.getElementById("emailError").innerHTML="이메일이 올바르지 않습니다."
-      check = false
+// ReCAPTCHA 초기화
+window.onload = () => {
+  window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+    'size': 'normal',
+    'callback': () => {
+      console.log("ReCAPTCHA 확인됨");
     }
-    else{
-      document.getElementById("emailError").innerHTML=""
+  }, auth);
+};
+
+// **아이디 중복 확인**
+window.checkEmail = async () => {
+  const email = document.getElementById("email").value;
+  const resultElement = document.getElementById("email-check-result");
+  try {
+    const methods = await fetchSignInMethodsForEmail(auth, email);
+    if (methods.length > 0) {
+      resultElement.style.color = "red";
+      resultElement.innerText = "이미 사용중인 아이디 입니다.";
+    } else {
+      resultElement.style.color = "green";
+      resultElement.innerText = "사용 가능한 아이디 입니다.";
     }
-  }else{
-    document.getElementById("emailError").innerHTML="이메일이 올바르지 않습니다."
-    check = false
+  } catch (error) {
+    console.error("에러 발생:", error.message);
   }
+};
 
+// **전화번호 인증 코드 전송**
+window.sendVerificationCode = () => {
+  const phoneNumber = document.getElementById("phone").value;
+  const appVerifier = window.recaptchaVerifier;
 
-  // 이름확인
-  if(name===""){
-    document.getElementById("nameError").innerHTML="이름이 올바르지 않습니다."
-    check = false
-  }else{
-    document.getElementById("nameError").innerHTML=""
-  }
+  signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+    .then((confirmationResult) => {
+      window.confirmationResult = confirmationResult;
+      alert("인증 코드가 전송되었습니다.");
+    })
+    .catch((error) => {
+      console.error("인증 코드 전송 실패:", error.message);
+      alert("인증 코드 전송 실패: " + error.message);
+    });
+};
 
+// **전화번호 인증 코드 확인**
+window.verifyCode = () => {
+  const code = document.getElementById("code").value;
 
-  // 비밀번호 확인
-  if(password !== passwordCheck){
-    document.getElementById("passwordError").innerHTML=""
-    document.getElementById("passwordCheckError").innerHTML="비밀번호가 동일하지 않습니다."
-    check = false
-  }else{
-    document.getElementById("passwordError").innerHTML=""
-    document.getElementById("passwordCheckError").innerHTML=""
-  }
+  window.confirmationResult.confirm(code)
+    .then(() => {
+      document.getElementById("phone-check-result").innerText = "전화번호 인증 완료!";
+      alert("전화번호 인증 성공!");
+    })
+    .catch((error) => {
+      alert("인증 실패: " + error.message);
+      console.error("인증 실패:", error.message);
+    });
+};
 
-  if(password===""){
-    document.getElementById("passwordError").innerHTML="비밀번호를 입력해주세요."
-    check = false
-  }else{
-    //document.getElementById("passwordError").innerHTML=""
-  }
-  if(passwordCheck===""){
-    document.getElementById("passwordCheckError").innerHTML="비밀번호를 다시 입력해주세요."
-    check = false
-  }else{
-    //document.getElementById("passwordCheckError").innerHTML=""
-  }
+// **회원가입 및 Firestore 저장**
+window.registerUser = () => {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const city = document.getElementById("city").value;
+  const birthdate = document.getElementById("birthdate").value;
+  const phoneNumber = document.getElementById("phone").value;
 
+  createUserWithEmailAndPassword(auth, email, password)
+    .then(async (userCredential) => {
+      const user = userCredential.user;
 
-  // 지역선택 확인
-  if(area === "지역을 선택하세요."){
-    document.getElementById("areaError").innerHTML="지역을 선택해주세요."
-    check = false
-  }else{
-    document.getElementById("areaError").innerHTML=""
-  }
+      // Firestore에 추가 정보 저장
+      await setDoc(doc(db, "users", user.uid), {
+        email: email,
+        city: city,
+        birthdate: birthdate,
+        phone: phoneNumber
+      });
 
-  // 성별체크확인
-  if(!gender_man && !gender_woman){
-    document.getElementById("genderError").innerHTML="성별을 선택해주세요."
-    check = false
-  }else{
-    document.getElementById("genderError").innerHTML=""
-  }
-  
-  if(check){
-    document.getElementById("emailError").innerHTML=""
-    document.getElementById("nameError").innerHTML=""
-    document.getElementById("passwordError").innerHTML=""
-    document.getElementById("passwordCheckError").innerHTML=""
-    document.getElementById("areaError").innerHTML=""
-    document.getElementById("genderError").innerHTML=""
-    
-    //비동기 처리이벤트
-    setTimeout(function() {
-      alert("가입이 완료되었습니다.")
-  },0);
-  }
-}
+      alert("회원가입 성공! 로그인 페이지로 이동합니다.");
+      window.location.href = "login.html"; // 성공 시 로그인 페이지로 리디렉션
+    })
+    .catch((error) => {
+      alert("회원가입 실패: " + error.message);
+      console.error("회원가입 실패:", error.message);
+    });
+};

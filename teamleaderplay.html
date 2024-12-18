@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Player Page - Public Baseball Database</title>
+    <title>Manager Record - Public Baseball Database</title>
     <link rel="stylesheet" href="common_page.css">
     <style>
         body {
@@ -157,62 +157,37 @@
         }
     </style>
     <script>
-        // 선수 데이터를 서버에서 받아올 수 있도록 설정
-        const playerInfo = {
-            gender: "남",
-            age: 23,
+        // 감독 기록 데이터를 서버에서 받아올 수 있도록 설정
+        const managerStats = {
+            name: "홍길동",
             school: "가천대학교",
-            drafted: "비선출",
-            battingInfo: "우투좌타",
-            stats: {
-                year: "2023",
-                games: 32,
-                plateAppearances: 100,
-                atBats: 90,
-                hits: 30,
-                doubles: 6,
-                triples: 1,
-                homeRuns: 4,
-                walks: 8,
-                hbp: 2,
-                rbi: 37,
-                runs: 30,
-                steals: 25,
-                cs: 5,
-                sacFlies: 0,
-                avg: 0.333,
-                obp: 0.400,
-                slg: 0.511,
-                ops: 0.911,
-                wOBA: 0.458,
-                wRC: 156.4,
-                war: 9.2,
-                scoringRate: 0.462
-            }
+            profilePic: "profile.jpg",
+            year: "2023",
+            wins: 85,
+            draws: 5,
+            losses: 54,
+            winRate: 0.612,
+            rank: 2,
+            teamHomeRuns: 105,
+            teamSteals: 78,
+            teamRBIs: 500,
+            teamBattingAvg: 0.277,
+            teamERA: 3.65,
+            teamSaves: 32,
+            teamHolds: 45
         };
 
         document.addEventListener("DOMContentLoaded", () => {
-            // 선수 기본 정보 채우기
-            document.getElementById("gender").textContent = playerInfo.gender;
-            document.getElementById("age").textContent = playerInfo.age;
-            document.getElementById("school").textContent = playerInfo.school;
-            document.getElementById("drafted").textContent = playerInfo.drafted;
-            document.getElementById("battingInfo").textContent = playerInfo.battingInfo;
+            document.getElementById("managerName").textContent = managerStats.name;
+            document.getElementById("managerSchool").textContent = managerStats.school;
+            document.getElementById("profilePic").src = managerStats.profilePic;
 
-            // 시즌 기록 채우기
-            const statsRow = document.getElementById("statsRow");
-            const summaryRow = document.getElementById("summaryRow");
+            const statsRow = document.getElementById("managerStatsRow");
             statsRow.innerHTML = `
-                <td>${playerInfo.stats.year}</td><td>${playerInfo.stats.games}</td><td>${playerInfo.stats.plateAppearances}</td>
-                <td>${playerInfo.stats.atBats}</td><td>${playerInfo.stats.hits}</td><td>${playerInfo.stats.doubles}</td>
-                <td>${playerInfo.stats.triples}</td><td>${playerInfo.stats.homeRuns}</td><td>${playerInfo.stats.walks}</td>
-                <td>${playerInfo.stats.hbp}</td><td>${playerInfo.stats.rbi}</td><td>${playerInfo.stats.runs}</td>
-                <td>${playerInfo.stats.steals}</td><td>${playerInfo.stats.cs}</td><td>${playerInfo.stats.sacFlies}</td>`;
-
-            summaryRow.innerHTML = `
-                <td>${playerInfo.stats.avg}</td><td>${playerInfo.stats.obp}</td><td>${playerInfo.stats.slg}</td>
-                <td>${playerInfo.stats.ops}</td><td>${playerInfo.stats.wOBA}</td><td>${playerInfo.stats.wRC}</td>
-                <td>${playerInfo.stats.war}</td><td>${playerInfo.stats.scoringRate}</td>`;
+                <td>${managerStats.year}</td><td>${managerStats.wins}</td><td>${managerStats.draws}</td><td>${managerStats.losses}</td>
+                <td>${managerStats.winRate}</td><td>${managerStats.rank}</td><td>${managerStats.teamHomeRuns}</td>
+                <td>${managerStats.teamSteals}</td><td>${managerStats.teamRBIs}</td><td>${managerStats.teamBattingAvg}</td>
+                <td>${managerStats.teamERA}</td><td>${managerStats.teamSaves}</td><td>${managerStats.teamHolds}</td>`;
         });
     </script>
 </head>
@@ -241,43 +216,36 @@
     <main>
         <!-- 검색 기능 -->
         <div class="search-container">
-            <input type="text" placeholder="선수 이름을 입력하세요">
+            <input type="text" placeholder="감독 이름을 입력하세요">
             <button>찾기</button>
         </div>
 
         <!-- 기록 보기 링크 -->
         <div class="record-links">
-            <a href="Playerpagepicture.html">투수 기록 보기</a>
-            <a href="#">타자 기록 보기</a>
-            <a href="teamleaderplay.html">감독 기록 보기</a>
+            <a href="pitcher_record.html">투수 기록 보기</a>
+            <a href="Playerpage.html">타자 기록 보기</a>
+            <a href="#">감독 기록 보기</a>
         </div>
 
-        <!-- 선수 프로필 -->
+        <!-- 감독 프로필 -->
         <div class="profile-container">
-            <img src="profile.jpg" alt="선수 프로필">
+            <img id="profilePic" src="" alt="감독 프로필">
             <div class="profile-info">
                 <ul>
-                    <li>성별: <span id="gender"></span></li>
-                    <li>나이: <span id="age"></span></li>
-                    <li>출신 학교: <span id="school"></span></li>
-                    <li>선출 여부: <span id="drafted"></span></li>
-                    <li>투타 정보: <span id="battingInfo"></span></li>
+                    <li>이름: <span id="managerName"></span></li>
+                    <li>출신 학교: <span id="managerSchool"></span></li>
                 </ul>
             </div>
         </div>
 
-        <!-- 시즌 기록 -->
+        <!-- 감독 기록 테이블 -->
         <table>
-            <caption>시즌 타자 기록</caption>
+            <caption>감독 시즌 기록</caption>
             <tr>
-                <th>연도</th><th>경기</th><th>타석</th><th>타수</th><th>안타</th><th>2루타</th><th>3루타</th>
-                <th>홈런</th><th>볼넷</th><th>사구</th><th>타점</th><th>득점</th><th>도루</th><th>도실</th><th>희플</th>
+                <th>연도</th><th>승</th><th>무</th><th>패</th><th>승률</th><th>순위</th><th>팀홈런</th>
+                <th>팀도루</th><th>팀타점</th><th>팀타율</th><th>팀 자책점</th><th>팀 세이브</th><th>팀 홀드</th>
             </tr>
-            <tr id="statsRow"></tr>
-            <tr>
-                <th>타율</th><th>출루율</th><th>장타율</th><th>OPS</th><th>wOBA</th><th>WRC+</th><th>WAR</th><th>득타율</th>
-            </tr>
-            <tr id="summaryRow"></tr>
+            <tr id="managerStatsRow"></tr>
         </table>
     </main>
 

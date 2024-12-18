@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Player Page - Public Baseball Database</title>
+    <title>Pitcher Record - Public Baseball Database</title>
     <link rel="stylesheet" href="common_page.css">
     <style>
         body {
@@ -157,8 +157,8 @@
         }
     </style>
     <script>
-        // 선수 데이터를 서버에서 받아올 수 있도록 설정
-        const playerInfo = {
+        // 투수 기록 데이터를 서버에서 받아올 수 있도록 설정
+        const pitcherStats = {
             gender: "남",
             age: 23,
             school: "가천대학교",
@@ -166,53 +166,42 @@
             battingInfo: "우투좌타",
             stats: {
                 year: "2023",
-                games: 32,
-                plateAppearances: 100,
-                atBats: 90,
-                hits: 30,
-                doubles: 6,
-                triples: 1,
-                homeRuns: 4,
-                walks: 8,
-                hbp: 2,
-                rbi: 37,
-                runs: 30,
-                steals: 25,
-                cs: 5,
-                sacFlies: 0,
-                avg: 0.333,
-                obp: 0.400,
-                slg: 0.511,
-                ops: 0.911,
-                wOBA: 0.458,
-                wRC: 156.4,
-                war: 9.2,
-                scoringRate: 0.462
-            }
+                games: 28,
+                starts: 22,
+                reliefs: 6,
+                inningsPitched: 145.2,
+                wins: 12,
+                losses: 6,
+                saves: 1,
+                holds: 8,
+                strikeouts: 155,
+                walks: 45,
+                hbp: 5,
+                runsAllowed: 70,
+                earnedRuns: 58,
+                hitsAllowed: 120,
+                homeRunsAllowed: 18,
+                era: 3.58,
+                eraPlus: 125,
+                fip: 3.75,
+                whip: 1.12,
+                war: 4.2
+           }
         };
 
         document.addEventListener("DOMContentLoaded", () => {
-            // 선수 기본 정보 채우기
-            document.getElementById("gender").textContent = playerInfo.gender;
-            document.getElementById("age").textContent = playerInfo.age;
-            document.getElementById("school").textContent = playerInfo.school;
-            document.getElementById("drafted").textContent = playerInfo.drafted;
-            document.getElementById("battingInfo").textContent = playerInfo.battingInfo;
+            document.getElementById("gender").textContent = pitcherStats.gender;
+            document.getElementById("age").textContent = pitcherStats.age;
+            document.getElementById("school").textContent = pitcherStats.school;
+            document.getElementById("drafted").textContent = pitcherStats.drafted;
+            document.getElementById("battingInfo").textContent = pitcherStats.battingInfo;
 
-            // 시즌 기록 채우기
-            const statsRow = document.getElementById("statsRow");
-            const summaryRow = document.getElementById("summaryRow");
-            statsRow.innerHTML = `
-                <td>${playerInfo.stats.year}</td><td>${playerInfo.stats.games}</td><td>${playerInfo.stats.plateAppearances}</td>
-                <td>${playerInfo.stats.atBats}</td><td>${playerInfo.stats.hits}</td><td>${playerInfo.stats.doubles}</td>
-                <td>${playerInfo.stats.triples}</td><td>${playerInfo.stats.homeRuns}</td><td>${playerInfo.stats.walks}</td>
-                <td>${playerInfo.stats.hbp}</td><td>${playerInfo.stats.rbi}</td><td>${playerInfo.stats.runs}</td>
-                <td>${playerInfo.stats.steals}</td><td>${playerInfo.stats.cs}</td><td>${playerInfo.stats.sacFlies}</td>`;
-
-            summaryRow.innerHTML = `
-                <td>${playerInfo.stats.avg}</td><td>${playerInfo.stats.obp}</td><td>${playerInfo.stats.slg}</td>
-                <td>${playerInfo.stats.ops}</td><td>${playerInfo.stats.wOBA}</td><td>${playerInfo.stats.wRC}</td>
-                <td>${playerInfo.stats.war}</td><td>${playerInfo.stats.scoringRate}</td>`;
+            const statsRow = document.getElementById("pitcherStatsRow");
+            statsRow.innerHTML = `<td>${pitcherStats.stats.year}</td><td>${pitcherStats.stats.games}</td><td>${pitcherStats.stats.starts}</td><td>${pitcherStats.stats.reliefs}</td>
+                <td>${pitcherStats.stats.inningsPitched}</td><td>${pitcherStats.stats.wins}</td><td>${pitcherStats.stats.losses}</td><td>${pitcherStats.stats.saves}</td>
+                <td>${pitcherStats.stats.holds}</td><td>${pitcherStats.stats.strikeouts}</td><td>${pitcherStats.stats.walks}</td><td>${pitcherStats.stats.hbp}</td>
+                <td>${pitcherStats.stats.runsAllowed}</td><td>${pitcherStats.stats.earnedRuns}</td><td>${pitcherStats.stats.hitsAllowed}</td><td>${pitcherStats.stats.homeRunsAllowed}</td>
+                <td>${pitcherStats.stats.era}</td><td>${pitcherStats.stats.eraPlus}</td><td>${pitcherStats.stats.fip}</td><td>${pitcherStats.stats.whip}</td><td>${pitcherStats.stats.war}</td>`;
         });
     </script>
 </head>
@@ -247,8 +236,8 @@
 
         <!-- 기록 보기 링크 -->
         <div class="record-links">
-            <a href="Playerpagepicture.html">투수 기록 보기</a>
-            <a href="#">타자 기록 보기</a>
+            <a href="#">투수 기록 보기</a>
+            <a href="Playerpage.html">타자 기록 보기</a>
             <a href="teamleaderplay.html">감독 기록 보기</a>
         </div>
 
@@ -266,18 +255,15 @@
             </div>
         </div>
 
-        <!-- 시즌 기록 -->
+        <!-- 투수 기록 테이블 -->
         <table>
-            <caption>시즌 타자 기록</caption>
+            <caption>시즌 투수 기록</caption>
             <tr>
-                <th>연도</th><th>경기</th><th>타석</th><th>타수</th><th>안타</th><th>2루타</th><th>3루타</th>
-                <th>홈런</th><th>볼넷</th><th>사구</th><th>타점</th><th>득점</th><th>도루</th><th>도실</th><th>희플</th>
+                <th>연도</th><th>경기</th><th>선발</th><th>구원</th><th>이닝</th><th>승</th><th>패</th><th>세이브</th><th>홀드</th>
+                <th>삼진</th><th>볼넷</th><th>사구</th><th>실점</th><th>자책점</th><th>피안타</th><th>피홈런</th><th>ERA</th>
+                <th>ERA+</th><th>FIP</th><th>WHIP</th><th>WAR</th>
             </tr>
-            <tr id="statsRow"></tr>
-            <tr>
-                <th>타율</th><th>출루율</th><th>장타율</th><th>OPS</th><th>wOBA</th><th>WRC+</th><th>WAR</th><th>득타율</th>
-            </tr>
-            <tr id="summaryRow"></tr>
+            <tr id="pitcherStatsRow"></tr>
         </table>
     </main>
 
